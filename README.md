@@ -4,6 +4,10 @@
 ***
 Sistema cadastro de pessoas, utilizando a linguagem de programação Python, e o framework Django.
 
+## Python Versão
+- Python 3.8.2
+- Django 2.2.18
+
 ## Produção
 ***
 Para projeto em produção (Debug=False), foi utilizado a biblioteca dj-static
