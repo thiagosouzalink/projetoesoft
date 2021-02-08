@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container">
+      <div id="row-principal" class="row mt-4 pl-5 pr-5 " style="margin-bottom: 7%;">
+
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 id="titulo-profile" style="text-align: center;">Perfil</h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form_pessoa.nome|as_crispy_field }}
+                            {{ form_pessoa.sobrenome|as_crispy_field }}
+                            {{ form_pessoa.idade|as_crispy_field }}
+                            {{ form_pessoa.data_nascimento|as_crispy_field }}
+                            {{ form_pessoa.email|as_crispy_field }}
+                            {{ form_pessoa.apelido|as_crispy_field }}
+                            {{ form_pessoa.observacao|as_crispy_field }}
+                            <button type="submit" class="btn btn-info">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+{% endblock content %}
+

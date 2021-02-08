@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <style>
+        #pessoa {
+            color: white;
+        }
+    </style>
+    <div class="container">
+        <div id="row-principal" class="row mt-4" style="margin-bottom: 7%;">
+
+        <div class="col-md-12">
+            <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 id="titulo-profile" style="text-align: center;">Pessoas Cadastradas</h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if pessoas %}
+                            <table class="table table-dark table-sm">
+                                <thead>
+                                    <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Idade</th>
+                                    <th scope="col">Data de Nascimento</th>
+                                    <th scope="col">E-mail</th>
+                                    <th scope="col">Apelido</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for pessoa in pessoas %}
+                                    <tr>
+                                    <th scope="row"><a id="pessoa" href="{% url 'detalhe_pessoa' pessoa.id %}">{{ pessoa.nome }}</a></th>
+                                    <td>{{ pessoa.idade }}</td>
+                                    <td>{{ pessoa.data_nascimento }}</td>
+                                    <td>{{ pessoa.email }}</td>
+                                    <td>{{ pessoa.apelido }}</td>
+                                    <td><a class="btn btn-info" href="{% url 'editar_pessoa' pessoa.id %}">Editar</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                            <h3 style="text-align: center;">Não há pessoas cadastradas</h3>
+                        {% endif %}
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    h3, h4, h5 {
+        text-align: center;
+    }
+</style>
+    <div class="container">
+        <div id="row-principal" class="row mt-4" style="margin-bottom: 7%;">
+
+        <div class="col-md-12">
+            <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 id="titulo-profile">{{ pessoa.nome }}</h4>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>Idade</h4>
+                        <h5>{{ pessoa.idade }}</h5>
+                        <hr><br><br>
+                        <h4>Data de Nascimento</h4>
+                        <h5>{{ pessoa.data_nascimento }}</h5>
+                        <hr><br><br>
+                        <h4>E-mail</h4>
+                        <h5>{{ pessoa.email }}</h5>
+                        <hr><br><br>
+                        <h4>Apelido</h4>
+                        <h5>{{ pessoa.apelido }}</h5>
+                        <hr><br><br>
+                        <h4>Observação</h4>
+                        <h5>{{ pessoa.observacao }}</h5>
+                        <br>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+{% endblock content %}
