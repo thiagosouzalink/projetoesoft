@@ -1,18 +1,16 @@
-import requests
 from django import forms
 
 from .models import Pessoa
 
 
 class PessoaForm(forms.ModelForm):
-
+    """Campos do formulário"""
+    
     nome = forms.CharField(
         label='Nome'
-        #widget=forms.TextInput(attrs={'value': lista_nome[0]})
     )
     sobrenome = forms.CharField(
         label='Sobrenome'
-        #widget=forms.TextInput(attrs={'value': lista_nome[1]})
     )
     idade = forms.IntegerField()
     data_nascimento = forms.DateField(
@@ -31,6 +29,7 @@ class PessoaForm(forms.ModelForm):
         model = Pessoa
         fields = '__all__'
 
+    # Salvar dados no BD
     def save(self, commit=True):
         pessoa = super().save(commit=False)
         pessoa.nome = self.cleaned_data['nome']

@@ -5,9 +5,11 @@ from .models import Pessoa
 from .forms import PessoaForm
 
 
+# Página inicial
 def index(request):
-    pessoas = Pessoa.objects.all()
+    pessoas = Pessoa.objects.all().order_by('nome') # Lista em ordem alfabética
     return render(request, 'pessoas/index.html', {'pessoas': pessoas})
+
 
 def cadastrar_pessoa(request):
     if request.method == "POST":
@@ -18,12 +20,15 @@ def cadastrar_pessoa(request):
     else:       
         form_pessoa = PessoaForm()
         lista_nome = get_nome()
+        # Adiciona o nome e o sobrenome nos campos do formulário
         form_pessoa.fields['nome'].widget.attrs['value'] = lista_nome[0]
         form_pessoa.fields['sobrenome'].widget.attrs['value'] = lista_nome[1]
     return render(request, 'pessoas/pessoa_form.html', {'form_pessoa': form_pessoa})
 
+
 def editar_pessoa(request, id):
     pessoa = Pessoa.objects.get(id=id)
+    # Desmembra o nome em nome e sobrenome separados para apresentação no formulário
     lista_nome = pessoa.nome.split()
     nome = lista_nome.pop(0)
     sobrenome = ""
@@ -42,10 +47,13 @@ def editar_pessoa(request, id):
         form_pessoa.fields['sobrenome'].widget.attrs['value'] = sobrenome 
     return render(request, 'pessoas/pessoa_form.html', {'form_pessoa': form_pessoa})
 
+
 def detalhe_pessoa(request, id):
     pessoa = Pessoa.objects.get(id=id)
     return render(request, 'pessoas/detalhe_pessoa.html', {'pessoa': pessoa})
 
+
+# Recebe os nomes aletórios
 def get_nome():
     r = requests.get('https://gerador-nomes.herokuapp.com/nome/aleatorio')
     lista_nome = r.json()
